@@ -1,11 +1,20 @@
 package com.example.demo.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+
+@Data
+@Schema(description = "User entity")
 public class User {
+    @Schema(description = "User ID", example = "1")
     private Long id;
+
+    @Schema(description = "User's full name", example = "John Doe")
     private String name;
+
+    @Schema(description = "User's email address", example = "john@example.com")
     private String email;
 
-    // Constructors
     public User() {}
 
     public User(Long id, String name, String email) {
@@ -14,13 +23,4 @@ public class User {
         this.email = email;
     }
 
-    // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
 }

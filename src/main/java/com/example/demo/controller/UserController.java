@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.User;
 import jakarta.annotation.PostConstruct;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.*;
@@ -40,6 +41,7 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    // TODO GET user by id
     @GetMapping("/{id}")
     @Operation(summary = "Get user by ID", description = "Retrieve a specific user by their ID")
     @ApiResponses(value = {
@@ -60,6 +62,7 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
+    // TODO CREATE new user
     @PostMapping
     @Operation(summary = "Create new user", description = "Create a new user with provided information")
     @ApiResponses(value = {
@@ -78,6 +81,8 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
+
+    // TODO UPDATE user
     @PutMapping("/{id}")
     @Operation(summary = "Update user", description = "Update an existing user by ID")
     @ApiResponses(value = {
@@ -102,6 +107,8 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
+
+    // TODO DELETE user
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete user", description = "Delete a user by ID")
     @ApiResponses(value = {
@@ -117,6 +124,8 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
+
+    // TODO SEARCH user
     @GetMapping("/search")
     @Operation(summary = "Search users by name", description = "Find users by name (case-insensitive)")
     @ApiResponses(value = {
@@ -142,31 +151,3 @@ public class UserController {
     }
 }
 
-@Schema(description = "User entity")
-class User {
-    @Schema(description = "User ID", example = "1")
-    private Long id;
-
-    @Schema(description = "User's full name", example = "John Doe")
-    private String name;
-
-    @Schema(description = "User's email address", example = "john@example.com")
-    private String email;
-
-    public User() {}
-
-    public User(Long id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-}
